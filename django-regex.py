@@ -322,48 +322,6 @@ def flatten_result(source):
             result[i] += piece
     return result, result_args
 
-#def reverse_normalized(pattern, *args, **kwargs):
-#    for res, params in pattern:
-#        if args:
-#            if len(args) != len(params):
-#                continue
-#            candidate = res % dict(zip(params, args))
-#        else:
-#            if set(kwargs.keys()) != set(params):
-#                continue
-#            candidate = res % kwargs
-#
-#        if re.search(u'^%s' % pattern, candidate, re.UNICODE):
-#            return candidate
-#
-#    raise Exception()
-#
-#def reverse(pattern, *args, **kwargs):
-#    n_pattern = normalize(pattern)
-#    return reverse_normalized(n_pattern, *args, **kwargs)
-
-#def reverse_normal(n_pattern, pattern, *args, **kwargs):
-#    if isinstance(pattern, basestring):
-#        pattern = re.compile(pattern.encode('utf-8'), re.UNICODE)
-#
-#    for res, params in n_pattern:
-#        if args:
-#            if len(args) != len(params):
-#                continue
-#            candidate = res % dict(zip(params, args))
-#        else:
-#            if set(kwargs.keys()) != set(params):
-#                continue
-#            candidate = res % kwargs
-#
-#        if pattern.search(candidate):
-#            return candidate
-#
-#    return None
-#
-#def reverse(pattern, *args, **kwargs):
-#    return reverse_normal(normalize(pattern), pattern, *args, **kwargs)
-
 def reverse_normal(n_pattern, pattern, *args, **kwargs):
     if isinstance(pattern, basestring):
         pattern = re.compile(pattern, re.UNICODE)
@@ -384,22 +342,3 @@ def reverse_normal(n_pattern, pattern, *args, **kwargs):
 
 def reverse(pattern, *args, **kwargs):
     return reverse_normal(normalize(pattern), pattern, *args, **kwargs)
-
-#def reverse(pattern, *args, **kwargs):
-#    if not pattern.startswith('^'):
-#        pattern = r'^%s' % pattern
-#    for res, params in normalize(pattern):
-#        if args:
-#            if len(args) != len(params):
-#                continue
-#            candidate = res % dict(zip(params, args))
-#        else:
-#            if set(kwargs.keys()) != set(params):
-#                continue
-#            candidate = res % kwargs
-#
-#        if re.search(pattern, candidate, re.UNICODE):
-#            return candidate
-#
-#    #raise Exception()
-#    return None
